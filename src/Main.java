@@ -1,17 +1,50 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Inisialisasi array untuk menyimpan data produk
+        String[] kodeBarang = {"K001", "K002", "K003", "K004", "K005", "K006", "K007", "K008", "K009", "K010"};
+        String[] namaBarang = {"Produk1", "Produk2", "Produk3", "Produk4", "Produk5", "Produk6", "Produk7", "Produk8", "Produk9", "Produk10"};
+        double[] harga = {50.0, 30.0, 40.0, 25.0, 60.0, 35.0, 45.0, 55.0, 20.0, 50.0};
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Inisialisasi variabel untuk menyimpan data transaksi
+        int[] qty = new int[10];
+        double[] total = new double[10];
+        double totalInvoice = 0.0;
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        // Membuat objek Scanner untuk input
+        Scanner scanner = new Scanner(System.in);
+
+        // Memulai transaksi
+        System.out.println("Selamat datang di Aplikasi Penjualan Kosmetik");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("\nProduk ke-" + (i + 1));
+            System.out.println("Kode Barang: " + kodeBarang[i]);
+            System.out.println("Nama Barang: " + namaBarang[i]);
+            System.out.println("Harga: " + harga[i] + " per item");
+
+            // Memasukkan jumlah barang yang dibeli
+            System.out.print("Masukkan jumlah barang yang dibeli: ");
+            qty[i] = scanner.nextInt();
+
+            // Menghitung total untuk produk tersebut
+            total[i] = qty[i] * harga[i];
+
+            // Menambahkan total produk ke total invoice
+            totalInvoice += total[i];
         }
+
+        // Menampilkan detail transaksi
+        System.out.println("\nDetail Transaksi:");
+        System.out.println("| Kode Barang | Nama Barang | Harga | Jumlah | Total |");
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("| %-12s | %-11s | %-5.2f | %-6d | %-5.2f |\n", kodeBarang[i], namaBarang[i], harga[i], qty[i], total[i]);
+        }
+        System.out.println("|             |             |       |        |       |");
+        System.out.printf("| Total Invoice: %-27.2f |\n", totalInvoice);
+
+        // Menutup Scanner
+        scanner.close();
     }
 }
